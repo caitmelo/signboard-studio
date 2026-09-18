@@ -15,6 +15,6 @@ The optional Start from a file AI draft feature requires a server-side OPENAI_AP
 
 ## Secure AI-enabled replacement
 
-`webdev-signboard-studio-ai/` contains a deployable, server-backed replacement for the unavailable test-site key setup. It exposes an editable image-to-layout draft workspace and keeps `OPENAI_API_KEY` exclusively in the deployment environment. The browser sends a validated JPG or PNG reference image to the server procedure; the server submits the structured recognition request to OpenAI and returns only the validated draft. No credential is present in this repository or exposed to the browser.
+`webdev-signboard-studio-ai/` contains a deployable, server-backed replacement for the unavailable test-site key setup. It preserves the Studio's two entry points: **Upload your template** opens a separate browser-side PDF intake and editable-field review flow, while **Create your own** opens the image-to-layout draft workspace. The browser sends only the rendered selected PDF page or a validated JPG/PNG reference image to the server procedure; the server submits the structured recognition request to OpenAI and returns only the validated draft. No credential is present in this repository or exposed to the browser.
 
 The replacement project includes credential, router, and live image-recognition tests. The live test is opt-in (`RUN_LIVE_AI_TEST=true`) so it is not charged during ordinary local test runs.
