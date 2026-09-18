@@ -4,7 +4,7 @@ import { appRouter } from "./routers";
 import type { TrpcContext } from "./_core/context";
 
 const runLiveTest = process.env.RUN_LIVE_AI_TEST === "true";
-const fixturePath = new URL("./fixtures/signboard-reference.png", import.meta.url);
+const fixturePath = process.env.DRAFT_FIXTURE || new URL("./fixtures/signboard-reference.png", import.meta.url);
 
 describe("designDraft.create", () => {
   it.skipIf(!runLiveTest)("returns a validated editable layout from the reference fixture", async () => {
@@ -23,5 +23,6 @@ describe("designDraft.create", () => {
     expect(result.elements.length).toBeGreaterThan(0);
     expect(result.elements.length).toBeLessThanOrEqual(60);
     expect(result.elements.some((element) => element.kind === "text")).toBe(true);
+    expect(result.elements.filter((element) => element.kind === "text").length).toBeGreaterThan(1);
   }, 120_000);
 });
