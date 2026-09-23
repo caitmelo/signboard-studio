@@ -1,6 +1,22 @@
 # Fixes and retest — 23 September 2026
 
-Hosted version 47; source commit `2f259e515bd98da0b28053e29f0d0fac48e3b46c`.
+Hosted version 48; source commit `7b9dd410f493b32ef32dc144438058e50b2c4518`.
+
+## Print artwork corrections
+
+- Move whole editable text groups by the minimum distance into the specified 5 mm safe area. Preserve font sizes, wording, internal spacing and fixed artwork. Repeated normalization is idempotent, and impossible fits still fail validation.
+- A5 page 3: 11 text fields moved (the left paragraph and contact rows); tri-fold page 2: 14 fields in the left bullet column moved. Both original-wording pages pass safe-margin and overlap checks. JavaScript/Python edited-field parity still passes across 14 pages.
+- Provide Save corrected print version for corrected proof templates. The authenticated, owner-scoped action preserves the original, validates all print/text/media issues and creates a reviewed revision. It refuses unresolved issues and replacement-media jobs requiring full review.
+- Prepare both explicitly labelled 6x4 signboards at 1832 x 1220 mm face, 65 mm full-size bleed, 25% output: 490.5 x 337.5 mm sheet, 458 x 305 mm trim, 16.25 mm bleed. Uniformly fit the artwork, extend existing solid background bands and remove thin printer-frame bars. Do not stretch photographs or typography.
+- The Gladstone source photo remains 800 x 533 pixels. The public listing offers only 1920 x 1280 web images, still below suitable full-size sign resolution. A genuine high-resolution original is required; no upsampling or generated detail is presented as recovered print quality.
+
+## Corrected live downloads
+
+- A5 corrected revision: `bbb97dca-964d-4733-bf7e-d81e9b5bed85`. Saved as reviewed; actual browser print download inspected: 4 pages, PDF 1.3, zero fonts, 214 x 152 mm sheet, 210 x 148 mm trim, 2 mm bleed. Page 3 rendered and visually checked.
+- Tri-fold corrected revision: `c6a10b5a-18d2-4deb-a388-a8bb0237736a`. Saved as reviewed; actual 226,669,393-byte browser print download inspected: 2 pages, PDF 1.3, zero fonts, 301 x 633 mm sheet, 297 x 629 mm trim, 2 mm bleed. Page 2 rendered and visually checked.
+- Gladstone corrected-size proof: `b99a0efc-58cc-4a7c-b663-d0c27bd048ef`. Reimport correctly suggests 6x4 and retains the 13 dpi photo warning; print approval remains blocked pending the original photo.
+
+- Kulnura corrected-size reviewed template: `d8298512-cb77-470c-868d-a6f660b97947`. Reimport correctly suggests 6x4; all content/media preflight passes. Actual browser download inspected: 20,835,630 bytes, PDF 1.7, one page, zero fonts, 490.5 x 337.5 mm sheet, 458 x 305 mm trim and 16.25 mm bleed at 25%. Rendered output visually checked.
 
 ## Fixed
 
@@ -22,12 +38,12 @@ Hosted version 47; source commit `2f259e515bd98da0b28053e29f0d0fac48e3b46c`.
 - Live browser: A5 page 3 paragraph and both names/phones/emails edited. Four-page download completed (171,763,527 bytes). Download inspected: PDF 1.3, 214 x 152 mm sheets, 210 x 148 mm trim, 2 mm bleed, no font objects or soft masks. Rendered page 3 inspected visually: no detached fragment, correct emails and phone alignment.
 - Live browser: auction date 26 September 2026 and 13:30 retained after applying and reopening; generated label reads 1:30 pm.
 - Download-event capture timed out, but the actual completed files subsequently appeared and were independently inspected. This was delayed file delivery, not a failed PDF generation.
-- Version 47 live tri-fold retest: edited heading, address and paragraph; download succeeded after the memory fix. Inspected the actual 226,677,614-byte file: 2 pages, PDF 1.3, 301 x 633 mm sheets, 297 x 629 mm trim, 2 mm bleed, zero fonts or soft masks and no detected RGB/spot colour spaces.
+- Version 48 live tri-fold retest: edited heading, address and paragraph; download succeeded after the memory fix. Inspected the actual 226,677,614-byte file: 2 pages, PDF 1.3, 301 x 633 mm sheets, 297 x 629 mm trim, 2 mm bleed, zero fonts or soft masks and no detected RGB/spot colour spaces.
 - Production build, TypeScript check and Python frontend/package build passed.
 
 ## Print approval still required
 
-These are not all certified print-ready source designs. The A5 and tri-fold retain source text inside the required 5 mm safe margin and remain proof-only. The first photo signboard contains a low-resolution original image. The two 6x4 filenames conflict with the artwork's detected 8x6 proportions; confirm the intended size before ordering. Text baked into a floorplan/image stays part of that image and must be replaced with updated artwork; changing the address field does not rewrite those pixels. Replacement assets must meet print resolution requirements. Long QR destinations can produce modules below the minimum size and are flagged.
+These are not all certified print-ready source designs. The original A5 and tri-fold source files remain unchanged; use the new corrected revisions for the margin fixes. The first photo signboard contains a low-resolution original image. The new 6x4 versions resolve the filename/geometry conflict; older 8x6 proof records remain available for comparison. Text baked into a floorplan/image stays part of that image and must be replaced with updated artwork; changing the address field does not rewrite those pixels. Replacement assets must meet print resolution requirements. Long QR destinations can produce modules below the minimum size and are flagged.
 
 The hosted automation API rejects small-format `mode: print` with a clear error because heavy prepress runs in the Studio browser or Python application. Use either of those paths for the finished PDF; API proof mode remains available.
 
