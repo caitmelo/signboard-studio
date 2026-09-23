@@ -1,3 +1,18 @@
+# Builder correction and live retest — version 49
+
+Source `bbadbc4324d03e0cd282c6fe1d914463bc709764`.
+
+- Correct same-row agent cards to left-anchored names/emails and right-anchored phones. Do not infer right alignment from clipping boxes when an explicit left anchor exists. Applied in JavaScript and Python.
+- Keep letter paragraphs left aligned during reflow. Require the original inline address placeholder when replacing its containing paragraph; removal produces a visible error and blocks download instead of silently omitting the address. Address text remains editable independently.
+- Regression: edit letter wording/address and all six footer fields, assert untouched second paragraph, exact contact anchors and JavaScript/Python parity.
+- Live browser: removed address placeholder; observed validation error and disabled download. Restored placeholder, changed wording and address to 12 Harbour Street, Mardi; print download succeeded. Actual 634,815-byte PDF inspected: PDF 1.3, one page, zero fonts. Visually checked full address and both paragraphs.
+- Live browser: edited both names, phones and emails on A4 page 2. Actual 12,119,854-byte download inspected: PDF 1.3, two pages, zero fonts, 301 x 214 mm sheets, 297 x 210 mm trim, 2 mm bleed. Rendered footer inspected: email/name left anchors match, phone baselines match the names, and phone right anchors stay fixed.
+- Existing saved templates receive the correction on load; no reimport required. Test edits were not saved over original template defaults.
+
+Earlier review-folder mistake: the original A4 and letter uploads were generic regression outputs with placeholder text. Those files were separately replaced with original-content renders. Version 49 changes the builder itself and is tested with fresh edits and actual downloads.
+
+---
+
 # Fixes and retest — 23 September 2026
 
 Hosted version 48; source commit `7b9dd410f493b32ef32dc144438058e50b2c4518`.

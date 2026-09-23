@@ -1,6 +1,6 @@
 # Signboard Studio
 
-Source snapshot matching hosted version 48, source commit `7b9dd410f493b32ef32dc144438058e50b2c4518`.
+Source snapshot matching hosted version 49, source commit `bbadbc4324d03e0cd282c6fe1d914463bc709764`.
 
 - **signboard-studio-source.zip**: web and Python source, assets, fonts, tests and build scripts. Extract for development. Place the separately supplied Python ZIP at `public/downloads/signboard-studio-python.zip` to serve that download.
 - **signboard-studio-python.zip**: packaged Python application and frontend with setup instructions.
@@ -11,16 +11,18 @@ Run `npm ci` before building the source snapshot. `npm run build` restores the p
 
 ## Feedback update
 
-Version 48 also adds minimum-distance safe-margin correction, a validated corrected-version save action, and proportion-preserving 6x4 signboard preparation.
+Version 49 also adds minimum-distance safe-margin correction, a validated corrected-version save action, and proportion-preserving 6x4 signboard preparation.
 
 The preceding update adds column-constrained text wrapping, proportional text fitting, DL street-number styling, A5 paragraph repair, contact-field clipping/alignment fixes, auction-time handling and print finishing. Small-format downloads use PDF 1.3 with outlined fonts and flattened transparency; signs retain PDF 1.7.
 
 Includes signboard border and corner-mark cleanup, 8x4 recognition, editable outlined For Sale headings, centered contact fields, tri-fold bullet grouping, current-text warnings and preview scroll preservation. Reimport original PDFs to apply import-time cleanup and grouping.
 
-Edited-field regression checks passed across 14 pages in both rendering engines. Print conversion passed across all 8 documents. Version 48 corrects the booklet safe margins and supplies explicit 6x4 signboard layouts. The first signboard still requires a high-resolution original photograph. See [QA-FEEDBACK.md](QA-FEEDBACK.md) for exact coverage and limitations. Package checksums are in [release-manifest.json](release-manifest.json).
+Edited-field regression checks passed across 14 pages in both rendering engines. Print conversion passed across all 8 documents. Version 49 corrects the booklet safe margins and supplies explicit 6x4 signboard layouts. The first signboard still requires a high-resolution original photograph. See [QA-FEEDBACK.md](QA-FEEDBACK.md) for exact coverage and limitations. Package checksums are in [release-manifest.json](release-manifest.json).
 
 This is a source snapshot, not automatic ongoing synchronization. The optional AI draft feature requires a server-side OPENAI_API_KEY; it was not configured on the hosted test site during this update.
 
 ## Secure AI-enabled replacement
 
-`webdev-signboard-studio-ai/` contains the existing separate server-backed application. Its Upload your template flow supports browser-side PDF intake and field review; Create your own accepts PDFs, JPGs and PNGs for server-side recognition. Credentials stay server-side. Its live recognition test is opt-in with `RUN_LIVE_AI_TEST=true`. This directory is unchanged by the version 48 snapshot update.
+`webdev-signboard-studio-ai/` contains the existing separate server-backed application. Its Upload your template flow supports browser-side PDF intake and field review; Create your own accepts PDFs, JPGs and PNGs for server-side recognition. Credentials stay server-side. Its live recognition test is opt-in with `RUN_LIVE_AI_TEST=true`. This directory is unchanged by the version 49 snapshot update.
+
+Version 49 fixes same-row agent card anchors during edits and prevents letter address placeholders from being silently removed.

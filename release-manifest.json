@@ -1,12 +1,14 @@
 {
-  "site_version": 48,
-  "source_commit": "7b9dd410f493b32ef32dc144438058e50b2c4518",
-  "signboard-studio-source.zip": {
-    "bytes": 14303823,
-    "sha256": "92bf6377db5a1e29c3516d8026d0b390e06813eafc60697bf9c3ada963931a67"
-  },
-  "signboard-studio-python.zip": {
-    "bytes": 15190342,
-    "sha256": "2b5582a9a68493d49c7ae3c283d51544d1cfd21d9d8c8248668efe960a0defd4"
+  "site_version": 49,
+  "source_commit": "bbadbc4324d03e0cd282c6fe1d914463bc709764",
+  "files": {
+    "signboard-studio-source.zip": {
+      "bytes": 14345792,
+      "sha256": "7ab840a66362aa420ce4da30584c85df4f2485f82cb4cd68f3a66f4091bf17ee"
+    },
+    "signboard-studio-python.zip": {
+      "bytes": 15191448,
+      "sha256": "83cd9defac74c06b1b87968c435e148fdab97a39c4c14078bd67558e7beed559"
+    }
   }
 }
