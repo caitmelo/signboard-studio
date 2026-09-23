@@ -1,5 +1,9 @@
 # Signboard Studio
 
+## Developer handoff: template generator only
+
+Start with [GENERATOR-HANDOFF.md](GENERATOR-HANDOFF.md). The requested delivery is the existing-PDF import/edit/print generator; the blank-canvas **Create your own** builder is excluded from the integration scope. The ZIPs remain the tested full Studio packages, so the developer must exclude builder UI/routes when integrating. This is not a separately built generator-only release.
+
 Source snapshot matching hosted version 49, source commit `bbadbc4324d03e0cd282c6fe1d914463bc709764`.
 
 - **signboard-studio-source.zip**: web and Python source, assets, fonts, tests and build scripts. Extract for development. Place the separately supplied Python ZIP at `public/downloads/signboard-studio-python.zip` to serve that download.
