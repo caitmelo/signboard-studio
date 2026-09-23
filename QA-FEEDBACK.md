@@ -1,6 +1,6 @@
 # Fixes and retest — 23 September 2026
 
-Hosted version 46; source commit `9c3489f7a6e8593cc6dfdda06abee92dce598e87`.
+Hosted version 47; source commit `2f259e515bd98da0b28053e29f0d0fac48e3b46c`.
 
 ## Fixed
 
@@ -10,6 +10,7 @@ Hosted version 46; source commit `9c3489f7a6e8593cc6dfdda06abee92dce598e87`.
 - Correct phone right anchors and email clipping/left anchors; empty optional emails hide correctly.
 - Commit auction time on Apply and preserve it when changing the date or reopening the picker.
 - Pause preview rendering in inactive editor tabs.
+- Release the Python browser worker after rendering and transfer the print PDF buffer without cloning it. Store only page geometry before conversion instead of loading both complete PDFs concurrently; this addresses the large tri-fold memory-copy failure discovered in the live retest.
 - Finish small-format exports as PDF 1.3, outline fonts, flatten transparency and convert to process CMYK. Signboard exports remain PDF 1.7 with outlined fonts. No image downsampling is requested; transparency is flattened at 300 dpi.
 - Ship the same native print finishing in the Python package. System Ghostscript is required and is installed by its Dockerfile.
 
@@ -21,11 +22,12 @@ Hosted version 46; source commit `9c3489f7a6e8593cc6dfdda06abee92dce598e87`.
 - Live browser: A5 page 3 paragraph and both names/phones/emails edited. Four-page download completed (171,763,527 bytes). Download inspected: PDF 1.3, 214 x 152 mm sheets, 210 x 148 mm trim, 2 mm bleed, no font objects or soft masks. Rendered page 3 inspected visually: no detached fragment, correct emails and phone alignment.
 - Live browser: auction date 26 September 2026 and 13:30 retained after applying and reopening; generated label reads 1:30 pm.
 - Download-event capture timed out, but the actual completed files subsequently appeared and were independently inspected. This was delayed file delivery, not a failed PDF generation.
-- Production build and Python frontend/package build passed.
+- Version 47 live tri-fold retest: edited heading, address and paragraph; download succeeded after the memory fix. Inspected the actual 226,677,614-byte file: 2 pages, PDF 1.3, 301 x 633 mm sheets, 297 x 629 mm trim, 2 mm bleed, zero fonts or soft masks and no detected RGB/spot colour spaces.
+- Production build, TypeScript check and Python frontend/package build passed.
 
 ## Print approval still required
 
-These are not all certified print-ready source designs. The A5 and tri-fold retain source text inside the required 5 mm safe margin and remain proof-only. The first photo signboard contains a low-resolution original image. The two 6x4 filenames conflict with the artwork's detected 8x6 proportions; confirm the intended size before ordering. Replacement assets must meet print resolution requirements. Long QR destinations can produce modules below the minimum size and are flagged.
+These are not all certified print-ready source designs. The A5 and tri-fold retain source text inside the required 5 mm safe margin and remain proof-only. The first photo signboard contains a low-resolution original image. The two 6x4 filenames conflict with the artwork's detected 8x6 proportions; confirm the intended size before ordering. Text baked into a floorplan/image stays part of that image and must be replaced with updated artwork; changing the address field does not rewrite those pixels. Replacement assets must meet print resolution requirements. Long QR destinations can produce modules below the minimum size and are flagged.
 
 The hosted automation API rejects small-format `mode: print` with a clear error because heavy prepress runs in the Studio browser or Python application. Use either of those paths for the finished PDF; API proof mode remains available.
 
