@@ -1,4 +1,39 @@
-# Feedback implementation — 22 September 2026
+# Fixes and retest — 23 September 2026
+
+Hosted version 46; source commit `9c3489f7a6e8593cc6dfdda06abee92dce598e87`.
+
+## Fixed
+
+- Keep rich text inside the original column and proportionally reduce oversized text within a bounded range. Inputs that still cannot fit are rejected.
+- Preserve the DL large street number and smaller street/suburb lines; prevent description overflow into the photograph.
+- Repair the detached final fragment of the A5 body paragraph in compatible saved templates.
+- Correct phone right anchors and email clipping/left anchors; empty optional emails hide correctly.
+- Commit auction time on Apply and preserve it when changing the date or reopening the picker.
+- Pause preview rendering in inactive editor tabs.
+- Finish small-format exports as PDF 1.3, outline fonts, flatten transparency and convert to process CMYK. Signboard exports remain PDF 1.7 with outlined fonts. No image downsampling is requested; transparency is flattened at 300 dpi.
+- Ship the same native print finishing in the Python package. System Ghostscript is required and is installed by its Dockerfile.
+
+## Retest evidence
+
+- Edited-field regression passed for all 8 original PDFs / 14 pages in JavaScript and Python. Checked matching field values and horizontal positions.
+- All 8 native print conversions passed version, font, soft-mask and colour-space checks. Checked page count and trim/bleed dimensions.
+- Live browser: DL address, description and bed/bath/car edits dynamically update within the dark panel. Download inspected: 2 pages, PDF 1.3, 214 x 103 mm sheet, 210 x 99 mm trim, 2 mm bleed, no font objects or soft masks.
+- Live browser: A5 page 3 paragraph and both names/phones/emails edited. Four-page download completed (171,763,527 bytes). Download inspected: PDF 1.3, 214 x 152 mm sheets, 210 x 148 mm trim, 2 mm bleed, no font objects or soft masks. Rendered page 3 inspected visually: no detached fragment, correct emails and phone alignment.
+- Live browser: auction date 26 September 2026 and 13:30 retained after applying and reopening; generated label reads 1:30 pm.
+- Download-event capture timed out, but the actual completed files subsequently appeared and were independently inspected. This was delayed file delivery, not a failed PDF generation.
+- Production build and Python frontend/package build passed.
+
+## Print approval still required
+
+These are not all certified print-ready source designs. The A5 and tri-fold retain source text inside the required 5 mm safe margin and remain proof-only. The first photo signboard contains a low-resolution original image. The two 6x4 filenames conflict with the artwork's detected 8x6 proportions; confirm the intended size before ordering. Replacement assets must meet print resolution requirements. Long QR destinations can produce modules below the minimum size and are flagged.
+
+The hosted automation API rejects small-format `mode: print` with a clear error because heavy prepress runs in the Studio browser or Python application. Use either of those paths for the finished PDF; API proof mode remains available.
+
+The regression is not an exhaustive certification of every possible value, replacement image, printer RIP or device. Earlier browser testing covered each supplied template; this fix retest targets the failures and shared rendering paths. Large original files remain memory-intensive.
+
+---
+
+# Earlier feedback implementation — 22 September 2026
 
 The feedback at the end of the shared **Create Dynamic Templates** conversation has been applied to the hosted Studio source.
 
