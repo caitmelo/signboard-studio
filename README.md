@@ -1,5 +1,11 @@
 # Signboard Studio
 
+## Latest: version 50 builder fixes
+
+Use [the version 50 developer handoff](releases/v50/README.md). It includes all six changed source files and `python3 releases/v50/prepare_source.py`, which assembles a complete updated source ZIP from the checked-in v49 base. Automated checks passed; fresh visual testing of both scan reconstructions is still pending.
+
+The root ZIPs below remain the v49 base packages. Do not use those alone when handing off the v50 builder fixes.
+
 ## Developer handoff: template generator only
 
 Start with [GENERATOR-HANDOFF.md](GENERATOR-HANDOFF.md). The requested delivery is the existing-PDF import/edit/print generator; the blank-canvas **Create your own** builder is excluded from the integration scope. The ZIPs remain the tested full Studio packages, so the developer must exclude builder UI/routes when integrating. This is not a separately built generator-only release.
@@ -23,7 +29,7 @@ Includes signboard border and corner-mark cleanup, 8x4 recognition, editable out
 
 Edited-field regression checks passed across 14 pages in both rendering engines. Print conversion passed across all 8 documents. Version 49 corrects the booklet safe margins and supplies explicit 6x4 signboard layouts. The first signboard still requires a high-resolution original photograph. See [QA-FEEDBACK.md](QA-FEEDBACK.md) for exact coverage and limitations. Package checksums are in [release-manifest.json](release-manifest.json).
 
-This is a source snapshot, not automatic ongoing synchronization. The optional AI draft feature requires a server-side OPENAI_API_KEY; it was not configured on the hosted test site during this update.
+This is a source snapshot, not automatic ongoing synchronization. The optional AI draft feature requires a server-side OPENAI_API_KEY. It is now connected on the hosted site; developers must configure their own secret. No key is included in this repository.
 
 ## Secure AI-enabled replacement
 

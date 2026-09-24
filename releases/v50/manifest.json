@@ -1,0 +1,21 @@
+{
+  "site_version": 50,
+  "source_commit": "776f12a1229fcffe9c1eb7dcab4d2f88bd7b247f",
+  "base_source_commit": "bbadbc4324d03e0cd282c6fe1d914463bc709764",
+  "base_archive": "signboard-studio-source.zip",
+  "base_sha256": "7ab840a66362aa420ce4da30584c85df4f2485f82cb4cd68f3a66f4091bf17ee",
+  "overlay_sha256": {
+    "app/api/design-draft/route.ts": "1097d248324ce2cd872d2673003c2d49d7db536fa1bcc2d5694e6843b49c91f4",
+    "components/image-draft-dialog.tsx": "545f772f14741c06ec7f772e9b7f3ac0c800d3bd2a58b461fb416eb32cc45734",
+    "lib/draft-text-fit.ts": "9bed09b46741bae97a53b47cad07c85d9421496cd54d92d1377446e6eae43f87",
+    "lib/image-draft-schema.ts": "80562ddaca1e834c6b419dffc90ac840dad88cca160db6f70c8c752f8b80e4ef",
+    "lib/image-draft.ts": "27e95154d082625860ff434b45ae93ad58307a88461cfd8ee9e80ea8e2cbc095",
+    "scripts/check-scan-reconstruction.mts": "a656fd968a1e9fb9b9b44ea77f4b7081eb9b526caca58f73220d78e98d3f2d67"
+  },
+  "verification": {
+    "typecheck": "passed",
+    "production_build": "passed",
+    "text_fitting_and_A4_pdf_regression": "passed",
+    "fresh_visual_reconstruction_of_both_uploads": "pending - browser preview unavailable"
+  }
+}
