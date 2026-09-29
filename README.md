@@ -1,10 +1,12 @@
 # Signboard Studio
 
-## Latest: version 50 builder fixes
+## Latest: version 51 — HTML downloads
 
-Use [the version 50 developer handoff](releases/v50/README.md). It includes all six changed source files and `python3 releases/v50/prepare_source.py`, which assembles a complete updated source ZIP from the checked-in v49 base. Automated checks passed; fresh visual testing of both scan reconstructions is still pending.
+Start with [the v51 developer handoff](releases/v51/README.md). Run `python3 releases/v51/prepare_source.py` to assemble the complete updated source ZIP from the checked-in base and cumulative fixes. Includes the v50 builder fixes plus HTML-download buttons and PDF/HTML comparison tests.
 
-The root ZIPs below remain the v49 base packages. Do not use those alone when handing off the v50 builder fixes.
+HTML is a self-contained visual copy, not editable text. Three comparison pages passed visual and dimensional checks. Live button-click testing was unavailable; v50 scan reconstruction visual retesting remains pending.
+
+The root ZIPs below remain v49 base packages. Use the v51 assembly script for the current hosted source.
 
 ## Developer handoff: template generator only
 

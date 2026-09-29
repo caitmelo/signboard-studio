@@ -1,0 +1,26 @@
+[
+  {
+    "file": "a4-letter-and-landscape.html",
+    "page": 1,
+    "width_pt": 595.2755737304688,
+    "height_pt": 841.8897705078125,
+    "mean_channel_error_0_255": 0.3237,
+    "fraction_pixels_difference_over_32": 0.00401
+  },
+  {
+    "file": "a4-letter-and-landscape.html",
+    "page": 2,
+    "width_pt": 841.8897705078125,
+    "height_pt": 595.2755737304688,
+    "mean_channel_error_0_255": 0.5872,
+    "fraction_pixels_difference_over_32": 0.00521
+  },
+  {
+    "file": "edgewrap-two-agents.html",
+    "page": 1,
+    "width_pt": 956.6929321289062,
+    "height_pt": 1390.3936767578125,
+    "mean_channel_error_0_255": 0.8642,
+    "fraction_pixels_difference_over_32": 0.00227
+  }
+]
