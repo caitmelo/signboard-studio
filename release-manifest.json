@@ -1,7 +1,9 @@
 {
-  "site_version": 49,
-  "source_commit": "bbadbc4324d03e0cd282c6fe1d914463bc709764",
-  "files": {
+  "site_version": 55,
+  "source_commit": "1caed47a45a14c0afeca35ca006bc5b23ba3239c",
+  "latest_source": "releases/v55",
+  "assembly_command": "python releases/v55/prepare_source.py",
+  "base_archives": {
     "signboard-studio-source.zip": {
       "bytes": 14345792,
       "sha256": "7ab840a66362aa420ce4da30584c85df4f2485f82cb4cd68f3a66f4091bf17ee"

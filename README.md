@@ -1,9 +1,9 @@
-# Signboard Studio — v52
+# Signboard Studio — v55
 
-Latest source: `releases/v52`. Run `python releases/v52/prepare_source.py` from this repository to assemble the complete updated source ZIP from the v49 base and cumulative overlay. Root ZIPs and the separate Python implementation are older releases.
+Live site: https://stone-edgewrap-studio.caitmelo.chatgpt.site
 
-Path B automatically reconstructs pages dominated by unnamed Type 3 fonts, including Bundeena pages 1 and 3. Normal PDF import remains unchanged. Image-only pages stay intact. The current import session offers comparison with the original. Recognition requires the existing OPENAI_API_KEY site secret. Reconstructed fonts/crops and wording require review; preview crops should be replaced with original high-resolution images for professional printing. This is a conservative detector, not a universal detector of every malformed PDF.
+Latest source: `releases/v55`. Run `python releases/v55/prepare_source.py` to assemble the complete source ZIP from the checked-in v49 base and cumulative overlay. Root ZIPs remain the older base releases.
 
-TypeScript, production build, routing on the supplied PDFs, clean-route byte identity, and unavailable-recognition handling passed. Full live AI reconstruction and visual accuracy comparison remain unverified.
+Includes the font-service repair, embedded punctuation recovery, 600-field limit, missing PDF image decoders, process-colour warning correction, stale text-key handling, locked full-page backgrounds, and automatic removal of detected separate proof-watermark overlays during import. Watermarks baked into photos still need clean artwork. Original files are preserved, and removal can be undone in the import preview.
 
-Test site: https://stone-edgewrap-studio.caitmelo.chatgpt.site/
+API credentials remain in the site's runtime secrets; no API key is included. Public source uses placeholder sample contact details. Existing AI reconstruction limitations documented in earlier releases still apply.
