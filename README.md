@@ -1,9 +1,7 @@
-# Signboard Studio — v56
+# Stone Studio v57
 
-Live: https://stone-edgewrap-studio.caitmelo.chatgpt.site
+Fixes the 3mm PDF origin shift on import and preserves editable text as sharp vector outlines through PDF 1.3 conversion. Adds saved dates, copy IDs, revisions for new saves, per-copy deletion, a visible 100% completion state, and locked signboard background artwork.
 
-Run `python releases/v56/prepare_source.py` to assemble the latest source from the v49 ZIP and cumulative overlay. Root ZIPs remain older base releases.
+Sprint settings remain product-specific: signboard registration marks; no crop marks on paper products; 2mm paper bleed and PDF 1.3 with outlined fonts. Original PDFs must be imported again to fix previously saved shifted artwork. Full matching fonts are required for characters absent from embedded subsets.
 
-Includes all v55 fixes and automatic proof watermark removal, plus real byte-based save progress, upload stage labels, a 60-second stalled-upload timeout, corrected whitespace in numeric inputs, and embedded-only handling for Helvetica Neue and EOS icons. Full matching fonts are still required for characters absent from a PDF subset. Overlap warnings remain available for print review.
-
-Runtime API credentials are unchanged and excluded from GitHub. Sample contacts are placeholders in the public release.
+Assemble the complete source with `python releases/v57/prepare_source.py`. See manifest.json for source and file hashes. Runtime secrets and customer PDF fixtures are excluded.

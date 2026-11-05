@@ -1,0 +1,41 @@
+export type Role = "fixed" | "agent1_name" | "agent1_phone" | "agent2_name" | "agent2_phone" | "agent1_email" | "agent2_email" | "custom";
+export type ContentKind = 'heading'|'address'|'details'|'agents'|'sale'|'viewing'|'features'|'agency'|'contact'|'text';
+export type ContentGroup = {id:string;key:string;kind:ContentKind;label:string;fieldIds:string[];bindings?:Record<string,string>};
+export type TextStyleRange = {start:number;end:number;bold:boolean;italic:boolean};
+export type RichTextValue = {rich:true;text:string;styles?:TextStyleRange[];inline?:Record<string,string>};
+export type GroupValue = string|{rich?:boolean;styles?:TextStyleRange[];inline?:Record<string,string>;fieldFormatting?:Record<string,TextStyleRange[]>;hidden?:boolean;previous?:GroupValue;type?:'for_sale'|'auction'|'original';date?:string;time?:string;mode?:'appointment'|'custom';text?:string;visible?:boolean;phone?:string;contact?:string;beds?:string;baths?:string;cars?:string};
+export type ContentValues = Record<string,GroupValue>;
+export type GlyphData = { advance: number; path: string; bounds: number[] | null };
+export type FontData = { name: string; unitsPerEm: number; glyphs: Record<string, GlyphData>; source?: "catalogue" | "embedded" | "upload"; subset?: boolean };
+export type TextRun = {
+  outlined?:boolean; bounds?:number[]; align?:"left"|"center"|"right"; id: string; stream: string; opIndex: number; text: string; x: number; y: number;
+  width: number; size: number; horizontalScale: number; fontName: string;
+  color: number[]; charSpace: number; wordSpace: number; role: Role; label: string;
+  supported: boolean; issue?: string; encodingComplete: boolean; members?: string[]; positions?: number[]; clip?: number[];
+};
+export type PrintProduct = "letter" | "edgewrap" | "linea" | "bannerwrap" | "pointer" | "other_signboard" | "brochure" | "mailcard" | "business_card" | "poster" | "vinyl_banner" | "other_print";
+export type BleedInsets = { top: number; bottom: number; left: number; right: number };
+export type PrintSpec = { resizeMode?:"fit"|"crop"; sizeName?: string; faceWidth: number; faceHeight: number; bleed: number; bleedInsets?: BleedInsets; sourceIncludesBleed: boolean; marks: boolean; product?: PrintProduct; productConfirmed?: boolean; bleedConfirmed?: boolean; sizeWarning?: string; sizeConfirmed?: boolean };
+export type QrStyle={foreground:number[];background:number[];quietZone:number;shape:"square"|"rounded";correction:"L"|"M"|"Q"|"H"};
+export type MediaSlot={locked?:boolean;hidden?:boolean;agent?:1|2;assetKind?:"photo"|"logo"|"icon"|"artwork";fragments?:MediaSlot[];flattenedShading?:boolean;region?:boolean;id:string;key:string;label:string;role:"fixed"|"image"|"qr";stream:string;opIndex:number;resourceName:string;matrix:number[];x:number;y:number;width:number;height:number;viewport:number[];pixelWidth:number;pixelHeight:number;supported:boolean;issue?:string;preview?:string;sourceUrl?:string;qrStyle:QrStyle;sourceDpi:number};
+export type PreparedImage={pdf:Uint8Array;width:number;height:number;name:string;preview?:string;assetId?:string};
+export type MediaChoice={kind:"original";slotId:string;fit?:"cover"|"contain";focalX?:number;focalY?:number}|{kind:"image";image:PreparedImage;fit?:"cover"|"contain";focalX?:number;focalY?:number}|{kind:"qr";url:string};
+export type MediaValues=Record<string,MediaChoice>;
+export type Analysis = {
+  fileName: string; pageIndex: number; pageCount: number; width: number; height: number;
+  runs: TextRun[]; warnings: string[]; errors: string[]; spec: PrintSpec;
+  fonts: Record<string, FontData>; suggestedSize: string | null; preview?: Uint8Array; media?:MediaSlot[];groups?:ContentGroup[];
+};
+export type SavedTemplate = {
+  safeTextCorrected?:boolean;
+  outputProfile?:string;
+  authored?:boolean;
+  defaults?:{media?:Record<string,any>;text:Record<string,string>;content:ContentValues;oneAgent:boolean};
+  pages?: SavedTemplate[];
+  review?:{status:"approved"|"proof";reviewedAt:string;revision:number;parentId?:string};
+  schemaVersion: 1; name: string; sourceName: string; sourceWidth: number; sourceHeight: number;
+  sourcePageIndex?:number;fieldSettings?:Pick<TextRun,"id"|"role"|"label">[];
+  fields: TextRun[]; fixedText?: Pick<TextRun,"text"|"x"|"y"|"width"|"size"|"bounds">[]; fonts: Record<string, FontData>; spec: PrintSpec;media?:MediaSlot[];groups?:ContentGroup[];
+  warnings: string[]; printIssues: string[]; createdAt: string;
+};
+export type TemplateSummary = { id: string; name: string; source_name: string; field_count: number; face_width_mm: number; face_height_mm: number; created_at: string; revision?:number };
