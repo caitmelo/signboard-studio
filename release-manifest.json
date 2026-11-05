@@ -1,6 +1,6 @@
 {
-  "site_version": 57,
-  "source_commit": "b129e655ebe08899e8ffc94a1bbb82b3f82464d1",
-  "latest_source": "releases/v57",
-  "assembly_command": "python releases/v57/prepare_source.py"
+  "site_version": 58,
+  "source_commit": "786b0f37108120d5fafdcb56429da3f752b11d79",
+  "latest_source": "releases/v58",
+  "assembly_command": "python releases/v58/prepare_source.py"
 }

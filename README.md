@@ -1,7 +1,9 @@
-# Stone Studio v57
+# Stone Studio v58
 
-Fixes the 3mm PDF origin shift on import and preserves editable text as sharp vector outlines through PDF 1.3 conversion. Adds saved dates, copy IDs, revisions for new saves, per-copy deletion, a visible 100% completion state, and locked signboard background artwork.
+Adds readable branded template names, step-specific import/save/font errors, separate proof and print PDF buttons, and private owner-scoped storage for matching fonts uploaded in field setup. Full font files must be supplied once; the project does not bundle the missing commercial fonts.
 
-Sprint settings remain product-specific: signboard registration marks; no crop marks on paper products; 2mm paper bleed and PDF 1.3 with outlined fonts. Original PDFs must be imported again to fix previously saved shifted artwork. Full matching fonts are required for characters absent from embedded subsets.
+Retains v57 PDF-origin alignment, vector text outlines, fixed signboard background, dates/copy IDs, delete controls and visible 100% save progress. Sprint paper output remains PDF 1.3 at 100%, with 2mm bleed and no crop marks; signboard registration marks are retained. Reimport original PDFs to fix older shifted copies.
 
-Assemble the complete source with `python releases/v57/prepare_source.py`. See manifest.json for source and file hashes. Runtime secrets and customer PDF fixtures are excluded.
+Assemble source with `python releases/v58/prepare_source.py`. The cumulative overlay is verified against manifest.json. Runtime secrets, uploaded font files and customer PDF fixtures are excluded.
+
+Validation: typecheck, build, four supplied-template regressions, exact vector-text preservation, origin checks, private font storage/reuse and proof/print mode checks passed. Interactive browser QA was unavailable because the managed preview relay was unavailable.
