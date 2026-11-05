@@ -1,16 +1,6 @@
 {
-  "site_version": 55,
-  "source_commit": "1caed47a45a14c0afeca35ca006bc5b23ba3239c",
-  "latest_source": "releases/v55",
-  "assembly_command": "python releases/v55/prepare_source.py",
-  "base_archives": {
-    "signboard-studio-source.zip": {
-      "bytes": 14345792,
-      "sha256": "7ab840a66362aa420ce4da30584c85df4f2485f82cb4cd68f3a66f4091bf17ee"
-    },
-    "signboard-studio-python.zip": {
-      "bytes": 15191448,
-      "sha256": "83cd9defac74c06b1b87968c435e148fdab97a39c4c14078bd67558e7beed559"
-    }
-  }
+  "site_version": 56,
+  "source_commit": "581628a12f50dbc5a2043cb0af8f880fb59a3895",
+  "latest_source": "releases/v56",
+  "assembly_command": "python releases/v56/prepare_source.py"
 }

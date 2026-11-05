@@ -1,9 +1,9 @@
-# Signboard Studio — v55
+# Signboard Studio — v56
 
-Live site: https://stone-edgewrap-studio.caitmelo.chatgpt.site
+Live: https://stone-edgewrap-studio.caitmelo.chatgpt.site
 
-Latest source: `releases/v55`. Run `python releases/v55/prepare_source.py` to assemble the complete source ZIP from the checked-in v49 base and cumulative overlay. Root ZIPs remain the older base releases.
+Run `python releases/v56/prepare_source.py` to assemble the latest source from the v49 ZIP and cumulative overlay. Root ZIPs remain older base releases.
 
-Includes the font-service repair, embedded punctuation recovery, 600-field limit, missing PDF image decoders, process-colour warning correction, stale text-key handling, locked full-page backgrounds, and automatic removal of detected separate proof-watermark overlays during import. Watermarks baked into photos still need clean artwork. Original files are preserved, and removal can be undone in the import preview.
+Includes all v55 fixes and automatic proof watermark removal, plus real byte-based save progress, upload stage labels, a 60-second stalled-upload timeout, corrected whitespace in numeric inputs, and embedded-only handling for Helvetica Neue and EOS icons. Full matching fonts are still required for characters absent from a PDF subset. Overlap warnings remain available for print review.
 
-API credentials remain in the site's runtime secrets; no API key is included. Public source uses placeholder sample contact details. Existing AI reconstruction limitations documented in earlier releases still apply.
+Runtime API credentials are unchanged and excluded from GitHub. Sample contacts are placeholders in the public release.

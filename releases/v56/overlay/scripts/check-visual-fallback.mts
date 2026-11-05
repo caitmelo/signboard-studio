@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {visualFallbackPages,reconstructUnreliablePages} from '../lib/visual-fallback';
+const sign=new Uint8Array(readFileSync('../upload/8 x 4(5).pdf'));
+const brochure=new Uint8Array(readFileSync('../upload/brochure.pdf'));
+assert.deepEqual(await visualFallbackPages(sign,[0]),[]);
+assert.deepEqual(await visualFallbackPages(brochure,[0,1,2,3]),[0,2]);
+assert.deepEqual(await visualFallbackPages(brochure,[1,3]),[]);
+const oldFetch=globalThis.fetch;globalThis.fetch=async()=>{throw Error('Clean route must not call recognition')};
+const clean=await reconstructUnreliablePages(sign,'8x4.pdf',[0],new Map(),()=>{});
+assert.equal(clean.data,sign);assert.equal(clean.scenes.size,0);
+globalThis.fetch=async()=>new Response(JSON.stringify({available:false}));
+await assert.rejects(reconstructUnreliablePages(brochure,'renamed.pdf',[0,2],new Map(),()=>{}),/original is unchanged/);
+globalThis.fetch=oldFetch;
+console.log('PASS: clean PDF byte identity; Brochure pages 1/3 route B; image-only pages preserved; unavailable recognition fails explicitly.');
