@@ -1,0 +1,10 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+import {loadEngineAssets,analyseDesign,compileDesign} from '../lib/template-engine';
+import {detectDocument,pickSize} from '../lib/document-setup';import {prepareSignboard} from '../lib/signboard-preparation';import {recheckPrint} from '../lib/recheck-print';
+globalThis.fetch=async(input:any)=>{const p='public'+new URL(String(input),'https://test.local').pathname;return fs.existsSync(p)?new Response(fs.readFileSync(p)):new Response('',{status:404});};
+const folder=process.env.STONE_FIXTURES_DIR;if(!folder)throw Error('Set STONE_FIXTURES_DIR');
+const assets=await loadEngineAssets();let source:Uint8Array=new Uint8Array(fs.readFileSync(folder+'/signboard.pdf'));const setup=await detectDocument(source,'6x4 Photo Signboard.pdf'),spec=pickSize(setup.spec,'6x4');source=await prepareSignboard(source,0,spec);const a=await analyseDesign(source,'6x4 Photo Signboard.pdf',0,assets);a.spec={...spec,sourceIncludesBleed:true,sizeConfirmed:true};const c=await compileDesign(source,a,'Signboard',assets);assert.deepEqual(c.manifest.printIssues,[]);
+const old={...c.manifest,printIssues:['A fixed vector colour or pattern needs printer colour review. Its original appearance is preserved.'],review:{status:'proof' as const,revision:1,reviewedAt:''}};
+assert.deepEqual((await recheckPrint(c.base,old,assets,{},false,{},{})).printIssues,[]);
+await assert.rejects(recheckPrint(c.base,{...old,spec:{...old.spec,sourceIncludesBleed:false}},assets,{},false,{},{}),/bleed|proportions/);
+console.log('PASS CMYK gradient alias, confirmed signboard dimensions, stale colour recheck; unresolved bleed still blocked');
