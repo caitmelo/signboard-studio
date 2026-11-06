@@ -1,0 +1,23 @@
+{
+  "site_version": 62,
+  "source_commit": "f9d71062f931b18883cb65a86fc8876955cd1955",
+  "previous_release": "v61",
+  "overlay_sha256": {
+    "app/api/templates/[id]/render/route.ts": "372ff55bd1f33a2dec99bcb985e578d71970a328b57d6a0a2a02c31c24a9e15f",
+    "components/saved-template-editor.tsx": "c4067c983fb268ab946a9961638ecdca23f3733d0bc8c532d3cbb6cb3f586fe2",
+    "components/template-builder.tsx": "da3f1db3c456de0ee42da2726e0c116c6842d5f2d1433b4966d61bf9fb2cf8c3",
+    "lib/content-frame-repair.ts": "a93e07f976e490d334e79a193daad9963c9579bbb2bb747d865964bc0c7176eb",
+    "lib/content-groups.ts": "02067ccdb9027deb75226f818b00487a52f74bd924dc46923e8dd03d21421767",
+    "lib/missing-bleed.ts": "568bd16ef570fd5d5fa06e1c04ebce6281fe2767a8d7f460331bc650dcc27e19",
+    "lib/print-specs.ts": "5c51168d27494b2b597750da99b5733d6e8875c3f34cbc4f41c3639a15f2e89f",
+    "lib/python-engine.ts": "1f151a225aff00a795fddd719dc828577cd8fb03f8622c5717512c03fbcd1a74",
+    "lib/refresh-bleed.ts": "e8182a97a3aad98e9fefbefb802c9a311be4207b5160cca2b2eb0a2e4157f847",
+    "lib/rich-text.ts": "7c03482427ec77625af99dfb26259288a71d89362f8974c3c3b0e42aa2455a71",
+    "lib/template-engine.ts": "0f78c1160fee3cd8ddc955fffc2bf1bad15162aa3f297dabe1893fbed2159ca0",
+    "lib/template-types.ts": "7bfeff502b01c365f637a2cb9a6368f9b09211f798f6dbca44040cd0ad70e7bf",
+    "lib/text-alignment.ts": "024ba0bf516a1cba0cad16cca0cb83be427e9d17cc58d07199121dbcd0b08d3d",
+    "public/python/engine.py": "5c72274af7c75e2eb877c5f32d1a752d83b3dcc3a58da95ff742a40d9525451b",
+    "python/signboard_studio/engine.py": "5c72274af7c75e2eb877c5f32d1a752d83b3dcc3a58da95ff742a40d9525451b",
+    "scripts/check-frame-alignment.mts": "3496db2f33306c1364dca5085fec2f96c10bc4f9a6094de148b3077559e77e35"
+  }
+}

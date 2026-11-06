@@ -1,7 +1,9 @@
-# Stone Studio v61
+# Stone Studio v62
 
-Improves 6 x 4 ft signboard fitting: when a distinct full-sheet background layer is safely recognised, preserve its image, CMYK colours and blend overlays while extending it across the fitted canvas and bleed. Foreground photos, text and icons keep their proportions. Background images remain locked after fitting. Saved templates now offer 100–300% preview zoom without changing print size.
+Repairs brochure text frames, keeps inline phone numbers beside agent names, centres stacked email lines, and retains number/icon spacing. Bullet-list frames and address/headline fields are recovered when opening older templates. Unchanged rich text preserves source glyph positions.
 
-Validation: typecheck, production build, crop-mark checks, and a 6 x 4 signboard regression pass. Actual Python print export has a 1220 x 1832 mm final trim, 65 mm full-size bleed, 25% output and registration squares. Brochure source-to-prepared fixed artwork coordinates differ only by the intended 2 mm bleed; original headshot outlines in the supplied brochure are white. A magnified inspection corrected the v60 report: both gold phone icons are present in the signboard proof. The gold colour median before/after print conversion differed by one 8-bit red level in the checked sample.
+Missing bleed is generated outside the original trim by extending artwork edges. Finished-face dimensions and content positions are retained; repeated opening does not add bleed twice. Applies to imports and saved templates.
 
-Assemble with `python releases/v61/prepare_source.py`. This verifies and builds the v60 source in a temporary directory, then applies the eight readable v61 source files. Customer PDFs, credentials and test downloads are excluded. Existing saved copies remain available; the corrected signboard uses the user-confirmed 6 x 4 ft size.
+Validated with source-fixture alignment and bleed tests, crop-mark and 6x4 signboard regressions, TypeScript checks, Python export/print finalization and the production build. Source fixtures, customer PDFs, credentials and downloads are excluded.
+
+Assemble with `python releases/v62/prepare_source.py`.
