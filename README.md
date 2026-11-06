@@ -1,7 +1,9 @@
-# Stone Studio v63
+# Stone Studio v64
 
-Includes v62 text-frame and automatic-bleed corrections. Fixes inline agent phone placement even when saved text formatting splits a line into styled runs. Preserves hidden groups when repairing legacy brochure frames. Keeps image crop coordinates local when adding bleed so replacement headshots remain inside their circular frames.
+Shows finished-size previews on the homepage and in saved-template editing. Stored print-sheet thumbnails are cropped using the template’s exact trim geometry, not white-pixel guessing. The editor has a separate print-sheet-and-bleed view. Print PDF geometry, bleed, marks, artwork, API configuration and export engines are unchanged.
 
-Validation: TypeScript and production build; source-fixture tests for unchanged glyph positions, centred email, inline names/phones (including formatting), list frames, trim invariance, idempotent bleed and local image crop coordinates; Python formatted-flow check and print finalization. Live saved-template downloads were checked during this release.
+Validation: TypeScript, production build, thumbnail geometry tests (including asymmetric registration space and 25% scaling), and existing brochure/signboard frame-alignment tests. Listed and Sold source PDFs were rendered on both pages; source safe-margin review notes remain and are not silently approved.
 
-Assemble with `python releases/v63/prepare_source.py`. Customer source PDFs, downloaded outputs and credentials are excluded.
+Build the full source archive with `python releases/v64/prepare_source.py`. This assembles verified prior releases plus the readable v64 overlay. Customer PDFs and credentials are excluded.
+
+Live site: https://stone-edgewrap-studio.caitmelo.chatgpt.site

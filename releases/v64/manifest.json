@@ -1,0 +1,15 @@
+{
+  "site_version": 64,
+  "source_commit": "bfb2feaba92aeef8856e18b98c6a83a72c59df9c",
+  "base_release": "v63",
+  "overlay_sha256": {
+    "app/api/templates/[id]/preview-frame/route.ts": "a5ccdc4550f24a45257a83e728a462be48786953e3dcff9764ad48680c676ff1",
+    "app/templates.css": "270ea70bd2d9ea87a56017573b4ed6bb634794a592bad877c1b61458598073b5",
+    "components/pdf-preview.tsx": "e1ed0b1c65636360c1353208b94dcd337595579a3bea9c00fda417f819fd9b53",
+    "components/saved-template-editor.tsx": "4411a60f627e0dc7d7cd078e0175edcc92d7070d17cb5678b8712d87ece43e68",
+    "components/template-cover.tsx": "d4377145ba20b1cef4ee40a3d1269d866cba4db3205eafef6b0d9725967f828d",
+    "components/template-library.tsx": "85b5f7771e9667797868895aa03318a19f70660842915e18a3444834313a5e7f",
+    "lib/thumbnail-frame.ts": "73c91fcda80b1a542c6ba199286cf3a0d09f65a23412e1a504e337f78b52a449",
+    "scripts/check-thumbnail-frame.mts": "f9c78f5ee5da3b408f8099fd8594dd3994458195a07b5b29f568a65995768a02"
+  }
+}
