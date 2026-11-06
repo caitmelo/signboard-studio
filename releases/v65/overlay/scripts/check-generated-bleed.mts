@@ -1,0 +1,15 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+import {analyseDesign,compileDesign,loadEngineAssets} from '../lib/template-engine';
+import {addMissingSourceBleed} from '../lib/missing-bleed';
+globalThis.fetch=async(input:any)=>{const p='public'+new URL(String(input),'https://test').pathname;return fs.existsSync(p)?new Response(fs.readFileSync(p)):new Response('',{status:404});};
+const root=process.env.TEMPLATE_FIXTURES;if(!root)throw Error('Set TEMPLATE_FIXTURES to the original template fixture directory');
+const assets=await loadEngineAssets(),source=fs.readFileSync(root+'/signboard-source.pdf');
+const spec=JSON.parse(fs.readFileSync(root+'/signboard-manifest.json','utf8')).spec;
+const before=await analyseDesign(source,'signboard.pdf',0,assets);
+const bleed=await addMissingSourceBleed(source,0,spec);
+const after=await analyseDesign(bleed.data,'signboard.pdf',0,assets);after.spec=bleed.spec;
+assert.equal(after.runs.length,before.runs.length,'bleed must not add duplicate text');
+assert.equal(after.media?.length,before.media?.length,'bleed must not add extra media');
+const compiled=await compileDesign(bleed.data,after,'Signboard bleed check',assets);
+assert.ok(!compiled.manifest.printIssues.some(s=>/only about [12] dpi/.test(s)),compiled.manifest.printIssues.join('; '));
+console.log('PASS generated bleed: no duplicate text/media or false 1–2 dpi warnings',JSON.stringify(compiled.manifest.printIssues));

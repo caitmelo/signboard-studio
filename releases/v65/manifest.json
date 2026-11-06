@@ -1,0 +1,10 @@
+{
+  "site_version": 65,
+  "source_commit": "79028691c4227d4be6ab398058b4d40c6aba67e9",
+  "base_release": "v64",
+  "overlay_sha256": {
+    "lib/pdf-content.ts": "f778385488d07d18be916004f411c2c5b99d5fa350c3f5e74e90aacf779fd0d6",
+    "lib/refresh-bleed.ts": "4e3ebb61da228c8993390da670215b507bcc39c1b49a45d0018b28bb453fecb9",
+    "scripts/check-generated-bleed.mts": "7c38be100c544102b5ef1c6fc555adb427bab0bb3d50f4cd1be213b19e342464"
+  }
+}
