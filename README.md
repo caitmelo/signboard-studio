@@ -1,9 +1,7 @@
-# Stone Studio v62
+# Stone Studio v63
 
-Repairs brochure text frames, keeps inline phone numbers beside agent names, centres stacked email lines, and retains number/icon spacing. Bullet-list frames and address/headline fields are recovered when opening older templates. Unchanged rich text preserves source glyph positions.
+Includes v62 text-frame and automatic-bleed corrections. Fixes inline agent phone placement even when saved text formatting splits a line into styled runs. Preserves hidden groups when repairing legacy brochure frames. Keeps image crop coordinates local when adding bleed so replacement headshots remain inside their circular frames.
 
-Missing bleed is generated outside the original trim by extending artwork edges. Finished-face dimensions and content positions are retained; repeated opening does not add bleed twice. Applies to imports and saved templates.
+Validation: TypeScript and production build; source-fixture tests for unchanged glyph positions, centred email, inline names/phones (including formatting), list frames, trim invariance, idempotent bleed and local image crop coordinates; Python formatted-flow check and print finalization. Live saved-template downloads were checked during this release.
 
-Validated with source-fixture alignment and bleed tests, crop-mark and 6x4 signboard regressions, TypeScript checks, Python export/print finalization and the production build. Source fixtures, customer PDFs, credentials and downloads are excluded.
-
-Assemble with `python releases/v62/prepare_source.py`.
+Assemble with `python releases/v63/prepare_source.py`. Customer source PDFs, downloaded outputs and credentials are excluded.

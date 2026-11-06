@@ -1,0 +1,15 @@
+{
+  "site_version": 63,
+  "source_commit": "60537cfc80090a181f6de6cc5a671a6e49243c50",
+  "previous_release": "v62",
+  "overlay_sha256": {
+    "lib/content-frame-repair.ts": "82c689655fb387fa89afd777afa1cdf629bd8da08cf471ff5583e8cc952bb387",
+    "lib/missing-bleed.ts": "27ac148e34ee31ae4c8dc6c082492efe49ca0bacd0a2868235c0e63ede6f5345",
+    "lib/template-engine.ts": "403133fc029c6913207639b8e79282a47d00a04716ba792a44ff861bf24f5542",
+    "lib/template-types.ts": "21169fc094e05597bc4a6d760ab9f58117c923bed15188ceae54f05e20e2daf6",
+    "lib/text-alignment.ts": "ce58a087b04cbd1cd93ea89997b2a6b89efa5b624655fa724f3e34ccdea8cb3c",
+    "public/python/engine.py": "9379a9a80b430d6bad2c03c6796eba9c62fd3067b914dfe7bf1bad60b0b10470",
+    "python/signboard_studio/engine.py": "9379a9a80b430d6bad2c03c6796eba9c62fd3067b914dfe7bf1bad60b0b10470",
+    "scripts/check-frame-alignment.mts": "fa200f41e40f2b0e9076cd71365bcd180bb71ce1db63fdd70da87588be487219"
+  }
+}
