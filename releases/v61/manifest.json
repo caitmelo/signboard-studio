@@ -1,0 +1,15 @@
+{
+  "site_version": 61,
+  "source_commit": "3d447457e70532b6dbf9b461c5d688fe245513d0",
+  "base_release": 60,
+  "overlay_sha256": {
+    "components/pdf-preview.tsx": "68e196d393220e46f2952b97053d69d2db697ae7b4cc552f7e3c145e5579aff9",
+    "components/saved-template-editor.tsx": "c3c20aeb3fba0b2e3e512b7e71b41a38387e432d0ae4e358ce2db91a3a8a189d",
+    "lib/fixed-background.ts": "fe49883bb8053130ae2425d61f9081533026c1749e2735da0f469f4fbc338c74",
+    "lib/print-specs.ts": "dcc5cafaa4a7c5372ef802e06149cc6d0b3c2ceb20581be175ab636139764ec9",
+    "lib/signboard-backdrop.ts": "f62ca80b4f13a7cf90cf04f5240886f99342975c273177a3122aac864dc5a807",
+    "lib/signboard-preparation.ts": "a944947ead161b4161fb90b1f3b69511d4454bf01f1efef046dd28d834193c0c",
+    "lib/template-media.ts": "e274607a935e318ff277c1222fcabd22d70711255fb7423f12c695c76f64e6b0",
+    "scripts/check-signboard-fit.mts": "18b92c20c65dea682ec58ac312ca84c59d4c2c8b532278ef3e878a15aa80e3b1"
+  }
+}

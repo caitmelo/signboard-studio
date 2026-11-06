@@ -1,0 +1,18 @@
+import fs from 'node:fs';import assert from 'node:assert/strict';
+import {PDFDocument} from 'pdf-lib';
+import {detectDocument,pickSize} from '../lib/document-setup';
+import {prepareSignboard} from '../lib/signboard-preparation';
+import {loadEngineAssets,analyseDesign,compileDesign,evaluateTemplate} from '../lib/template-engine';
+import {normalizeSavedTemplate,printGeometry,exportScale} from '../lib/print-specs';
+import {isBackgroundArtwork} from '../lib/fixed-background';
+const fixture=process.env.SIGNBOARD_FIXTURE;if(!fixture)throw Error('Set SIGNBOARD_FIXTURE to a signboard PDF');
+globalThis.fetch=async(input:any)=>{const p='public'+new URL(String(input),'https://test.local').pathname;return fs.existsSync(p)?new Response(fs.readFileSync(p)):new Response('',{status:404});};
+const source=new Uint8Array(fs.readFileSync(fixture)),assets=await loadEngineAssets();const spec={...pickSize((await detectDocument(source,'signboard.pdf')).spec,'6x4'),sourceIncludesBleed:true};
+const prepared=await prepareSignboard(source,0,spec),doc=await PDFDocument.load(prepared),page=doc.getPage(0),trim=page.getTrimBox();
+assert(Math.abs(trim.width/trim.height-1220/1832)<1e-6);assert(Math.abs(page.getWidth()/page.getHeight()-1350/1962)<1e-6);
+const analysis=await analyseDesign(prepared,'6x4 Signboard.pdf',0,assets);analysis.spec=spec;const result=await compileDesign(prepared,analysis,'Signboard regression',assets);const t=normalizeSavedTemplate(result.manifest);
+assert.deepEqual(t.printIssues,[]);assert.deepEqual(evaluateTemplate(t,{},false).errors,[]);
+assert(t.media?.some(s=>s.locked&&s.role==='fixed'),'Backing artwork must be locked');
+assert(!t.media?.some(s=>s.role==='image'&&isBackgroundArtwork(s,t.media!,t.sourceWidth,t.sourceHeight)));
+const g=printGeometry(spec);assert.equal(g.width*exportScale(spec),337.5);assert.equal(g.height*exportScale(spec),490.5);assert(g.marks);
+console.log('PASS 6x4 fit, 65 mm bleed, registration geometry, font/layout validation and locked background');
