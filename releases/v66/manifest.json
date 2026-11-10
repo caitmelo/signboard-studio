@@ -1,0 +1,26 @@
+{
+  "site_version": 66,
+  "source_commit": "7d8b7193db39e6d0952bcb93273524ca4ea71ec7",
+  "base_release": "v65",
+  "overlay_sha256": {
+    "app/api/packages/[id]/files/[fileId]/route.ts": "98b399033d49c85c3df3ef0e85d9baa6a5296f7075afc0d61bce63d391241957",
+    "app/api/packages/[id]/route.ts": "b12a57b022004560c32f074043e832b5b4dc1b549722e87f67fa018e727bfc0a",
+    "app/api/packages/route.ts": "58acd7c2c8d160f291548b06cd0fc5aa097f49635cb5f4d8e8c5056eab653852",
+    "app/api/templates/[id]/assets/[asset]/route.ts": "affc27ed52535927667eff212d8b82f2f40ce881db420d39bb0a5b7d8bdaa29e",
+    "app/api/templates/[id]/complete/route.ts": "97502a249479f9c9d7360ffeecc227e44007716b078c49972015708cd68a1e20",
+    "app/api/templates/route.ts": "2be15bd6b2a719cfe172f1fa44bc68909b2a8e332c77547ef98125d6f901374a",
+    "app/templates.css": "2b0bca3ae6c0cc5f65bd3a6215bedf2efe2b32e84163b5d47f1a326d7a795d46",
+    "app/templates/package/page.tsx": "9eb56cd5373173125f519544177920f474206510a439df69e7d809339c6ab20a",
+    "components/package-import.tsx": "fa843f2d1660812982556f55e3102a5a38b2e8a9286090ed354053b1a9d95884",
+    "components/template-builder.tsx": "ad27a480d2bbcc720bfe8678cb49264f71848de1cdbde9c93cf29f4a0374485f",
+    "components/template-library.tsx": "4d8b26e3594b372091d1250eb51571864e923fc27b537b6e1f5710c4898574d1",
+    "components/template-workspace.tsx": "984f515989097e37bc2b6073ba54aee8f0251259bef184184489c0a1b56053f3",
+    "lib/idml-package.ts": "98f6581c1ea69573516dfdf149d7040c062665050cde34a573b49155c26af20a",
+    "lib/package-fonts.ts": "09329cc14b36ca26b3deff34ea4502aa66fdbc7c92a1712557f1ba0656be5b94",
+    "lib/package-zip.ts": "ea6abf734b0045238763968badc2b8c7d300aea16923fc5abb590178d60804cd",
+    "lib/template-package.ts": "63934c5154a8b6f4331bba25930e887a0837a9bc0e9b4b1c2fe37084635d6d91",
+    "lib/template-types.ts": "6d15ed506e5d0e394c36cdef54f125d194b04ee3c9cb8f8d94c2746fb2ce2528",
+    "scripts/check-package-import.mts": "8d711726d022f398c4f59b6d0743cd868dc9ab7cf37f06028b625ec9b4298e06",
+    "scripts/test-storage-env.mjs": "25e88178a372d7576f40af2d8982b7e48e1167c09c240eff45770aba4d878991"
+  }
+}
