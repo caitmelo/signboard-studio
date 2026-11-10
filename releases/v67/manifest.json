@@ -1,0 +1,29 @@
+{
+  "site_version": 67,
+  "source_commit": "ac2321dd4b4c92c432a91e95adae1ed4b9461da3",
+  "base_release": "v66",
+  "overlay_sha256": {
+    "app/api/fonts/installed/route.ts": "4599950bf0f622228cd2f03d1eea0a57f8ca15107b3f07d4ac34ee9b36e6bd97",
+    "app/api/packages/[id]/files/[fileId]/route.ts": "a784304c10f39fdf9c2b51f9b3fd9180592f64a59f44e7e64fcd15856ea4815b",
+    "app/api/templates/[id]/assets/[asset]/multipart/route.ts": "61adc02eed14a377655170807d47fd88e8fc91fbb74e1ed49530df0e4c25ac29",
+    "app/api/templates/[id]/complete/route.ts": "73a3778c1d217706d74a58f325615d07d8e0c94579960616d513d4aae1788d59",
+    "app/api/templates/[id]/fonts/route.ts": "156867b4504f02590d7dfe25d209e1d43d8003517cf30ac4e7abc79c03b273e0",
+    "app/api/templates/[id]/render/route.ts": "9118411dccb5688c475fb6022935c13a19ef90105e66188f289c95e680748735",
+    "app/templates.css": "69ed8260dec573e9847974405ded7732b89e439e6e0739e95c35855c28230a45",
+    "components/content-editor.tsx": "c1a89036d0d1f29da161c88cfb7ddf87391d3240425c73c9e827633940a89b3a",
+    "components/font-upload.tsx": "a575878b3c2bd6512fa29692856f12de9945eb6e226fd17731013bdfb6696600",
+    "components/missing-fonts.tsx": "c90f7f14a54c320ba602c47ab467a7dd194d19fc486ec8cafa025647b1eafe76",
+    "components/package-import.tsx": "d47bbaed51a908a9089e61ba3544a4a23ed66b3950a30a389bd9a32f8485f884",
+    "components/saved-template-editor.tsx": "8cbd94df5f9350e313689586a818c7fca76e36318741a22f0c48a60ec6ad99e2",
+    "components/template-builder.tsx": "54cd8dddfe9e1cbcf7d641b527a85d1f7bf454b08c18fdf8895ecd55806e147c",
+    "components/text-field-editor.tsx": "6606cba8aabf5874d5b933ade9ee257719d904b69605b1bf7c8c9b13e98e2be0",
+    "lib/font-choices.ts": "b7e65f9a1b22ed0c2c47e66bfe55aee319724cd9cb6481c61a068bdf80713916",
+    "lib/installed-fonts.ts": "d9718e790e55051f5591f571ee8d4e993511cbf45eb56dd784d5a35b05bbc493",
+    "lib/preview-job.ts": "f8ff253bc9b15eeb6578fcb3d54200371e5f3d4d26b2f5325e6f1c5080cda185",
+    "lib/template-engine.ts": "28f6d69ae4350db9150d1c8924b608c9f8e15b471d4c61ebce2cdac2adff5e9f",
+    "lib/template-types.ts": "817c447a7c09b0c70c758a2239f2f01706a32771e5ed03ad95edd0475adba6c6",
+    "scripts/check-font-choices.mts": "0dd38ed60762706524688c2929667863e07011c71ac3d2138aac4d3983abb4e2",
+    "scripts/check-free-fonts.mts": "b7585d62e7fa095064a6a94d88117334edb4bc1d43288b45e1283d1c532ffe1b",
+    "scripts/check-package-import.mts": "8bf1244e161030ea7ecd2095250307209336558e4201f8a50cf8b58642dbe0fa"
+  }
+}
