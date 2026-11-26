@@ -1,6 +1,7 @@
 {
-  "site_version": 67,
-  "source_commit": "ac2321dd4b4c92c432a91e95adae1ed4b9461da3",
-  "latest_source": "releases/v67",
-  "assembly_command": "python releases/v67/prepare_source.py"
+  "site_version": 81,
+  "source_commit": "ff94fcb0d4d5b50fd99f02e950dbad21f2930ef7",
+  "source_release": "releases/v81",
+  "prepare_source": "python releases/v81/prepare_source.py",
+  "live_url": "https://stone-edgewrap-studio.caitmelo.chatgpt.site"
 }

@@ -1,11 +1,33 @@
-# Stone Studio v67
+# Stone Studio v81
 
-Recognised fonts without a full available font now require an explicit choice: upload the matching font with a licensed-use confirmation, or approve the suggested closest bundled alternative. Existing original glyphs and positions are retained; the approved alternative supplies missing characters. Private-use icon meanings are never guessed.
+Latest live site: https://stone-edgewrap-studio.caitmelo.chatgpt.site
 
-The prompt appears during new imports and when reopening saved templates. Saving and downloading wait for unresolved font choices. Choices are persisted per template, including all pages. Font-file uploads, including fonts inside a package, require licence confirmation. Automatic free-font substitution has been removed.
+This repository now includes the source changes through live version **81**.
+Source commit: `ff94fcb0d4d5b50fd99f02e950dbad21f2930ef7`.
 
-Validation: TypeScript and production build; missing-font detection, alternative style selection, unchanged original glyphs and geometry, per-page choices, private font storage and persistence, server save guards, package licence checks, and existing package/font-library regression checks. Live browser verification was blocked by a browser-tool timeout while selecting the test PDF; it is not claimed as passed.
+## Get the current source
 
-Assemble full source with `python releases/v67/prepare_source.py`. Customer files and credentials are excluded. Runtime API configuration is unchanged.
+Run `python releases/v81/prepare_source.py` from a checkout of this repository.
+It verifies the overlay hashes, assembles the existing v67 base, and writes
+`signboard-studio-source-v81.zip`. Extract that archive, install dependencies,
+and use the project's build instructions.
 
-Live site: https://stone-edgewrap-studio.caitmelo.chatgpt.site
+The root source/Python ZIPs and older release folders are historical base artifacts;
+they are not the latest application on their own. The latest readable changes are
+in `releases/v81/overlay/`.
+
+## Included updates
+
+- Approve saves template work, records accepted issues, then offers New template.
+  The template creation screen no longer has a second Send off step.
+- Browser drafts and approvals, signed-in account sync, clearer issue lists,
+  page/frame review links, original/current comparison, and restored frame overlays.
+- Standard paper/signboard size suggestions, visible template naming, and separate
+  DL mailcard / A4 trifold-to-DL formats.
+- Original text fitting, source-font handling, missing-font choices, layout fixes,
+  and image-processing worker fixes.
+
+TypeScript and production build passed for the live source. Focused regression checks
+are included; see `releases/v81/overlay/FIX-VERIFICATION.md` for scope and remaining
+verification limits. Not every customer PDF or full browser workflow has been retested.
+Runtime API credentials are not included or changed by this GitHub update.
