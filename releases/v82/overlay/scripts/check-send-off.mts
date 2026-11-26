@@ -1,0 +1,11 @@
+import assert from 'node:assert/strict';
+import {sendOffDesign,type SendOffInput} from '../lib/send-off';
+const input={base:new Uint8Array(),manifest:{name:'Property 14',review:{revision:3}},values:{address:'14 Short Street'},content:{},media:{},oneAgent:false,cropMarks:true} as unknown as SendOffInput;
+const bytes=new TextEncoder().encode('%PDF-1.7\napproved print output'),events:string[]=[],identity={id:'same-final-id',approvedAt:'2026-11-25T01:00:00.000Z'};
+const services={validate:()=>{events.push('validate')},render:async()=>{events.push('render');return bytes},persist:async(final:any)=>{events.push('persist');assert.equal(final.status,'approved');assert.equal(final.delivery.status,'not_submitted');assert.equal(final.manifest.defaults.text.address,'14 Short Street');assert.deepEqual(final.pdf,bytes)}};
+const result=await sendOffDesign(input,services,identity);assert.deepEqual(events,['validate','render','persist']);assert.equal(result.id,identity.id);assert.equal(result.manifest.review?.revision,3);
+await assert.rejects(sendOffDesign(input,{...services,validate:()=>{throw Error('Bleed missing')}},identity),/Bleed missing/);
+let persisted=false;await assert.rejects(sendOffDesign(input,{...services,render:async()=>new Uint8Array([1,2]),persist:async()=>{persisted=true}},identity),/valid PDF/);assert.equal(persisted,false);
+await assert.rejects(sendOffDesign(input,{...services,persist:async()=>{throw Error('Storage full')}},identity),/Storage full/);
+assert.equal((input.manifest as any).defaults,undefined,'Approval must not mutate editable template');
+console.log('Send off: ordered validation/export/save, exact PDF, approval metadata, and failure paths passed');

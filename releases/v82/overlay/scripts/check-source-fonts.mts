@@ -1,0 +1,16 @@
+import assert from 'node:assert/strict';
+import {readFile} from 'node:fs/promises';
+import {PDFDocument,StandardFonts,PDFName,PDFString,PDFHexString} from 'pdf-lib';
+import {refreshSourceFontIssues,repairFixedFont,sourceFontName} from '../lib/source-fonts';
+import {acceptAlternative,missingFonts} from '../lib/font-choices';
+import {inspectPdf} from '../lib/pdf-content';
+import {colourConverter} from '../lib/template-colour';
+const assets={table:new Uint8Array(await readFile('public/template/rgb-to-cmyk-33.bin')),icc:new Uint8Array(await readFile('public/template/colour/CGATS001Compat-v2-micro.icc'))};
+const doc=await PDFDocument.create(),page=doc.addPage([300,400]);const f=await doc.embedFont(StandardFonts.Helvetica);page.drawText('The Glades Estate',{x:30,y:200,size:16,font:f});const base=await doc.save();const t={schemaVersion:1,name:'Font test',fields:[],fonts:{},printIssues:[],warnings:[]} as any;
+const checked=await refreshSourceFontIssues(base,t,assets);assert.ok(checked.printIssues.some(v=>sourceFontName(v)==='Helvetica'));
+assert.equal(missingFonts([checked])[0].name,'Helvetica');
+const repaired=await repairFixedFont(base,checked,'Helvetica',acceptAlternative('Helvetica'),assets);assert.equal(repaired.manifest.printIssues.length,0);assert.ok(repaired.base.length>0);assert.equal((await PDFDocument.load(repaired.base)).getPageCount(),1);
+const original=await inspectPdf(base,0,colourConverter(assets.table),assets.icc),after=await inspectPdf(repaired.base,0,colourConverter(assets.table),assets.icc);assert.ok(original.runs.some(r=>r.text==='The Glades Estate'));assert.equal(after.runs.length,0,'Replaced text is outlined once, original text hidden');
+await assert.rejects(repairFixedFont(base,checked,'Helvetica',{name:'Missing',unitsPerEm:1000,glyphs:{}},assets),/cannot be safely decoded/);
+const td=await PDFDocument.create(),tp=td.addPage([100,100]);const glyph=td.context.register(td.context.flateStream('600 0 d0 0 0 500 700 re f'));const type3=td.context.register(td.context.obj({Type:'Font',Subtype:'Type3',FontBBox:[0,0,600,700],FontMatrix:[.001,0,0,.001,0,0],CharProcs:{A:glyph},Encoding:{Type:'Encoding',Differences:[65,'A']},FirstChar:65,LastChar:65,Widths:[600],Resources:{}}));tp.node.set(PDFName.of('Resources'),td.context.obj({Font:{R16:type3}}));tp.node.set(PDFName.of('Contents'),td.context.register(td.context.flateStream('BT /R16 12 Tf 10 20 Td (A) Tj ET')));const type3bytes=await td.save();const typed=await refreshSourceFontIssues(type3bytes,{...t,printIssues:['The source font R16 is not embedded. Export the source with all fixed fonts embedded for reliable print output.']},assets);assert.equal(typed.printIssues.length,0,'Type3 outlines are self contained, stale warning removed');
+console.log('Source font checks passed: Type3, missing-font prompt, outlined alternative, unsafe decoding rejection');

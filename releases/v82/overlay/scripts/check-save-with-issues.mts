@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {env} from './test-storage-env.mjs';
+import {POST as create} from '../app/api/templates/route';
+import {POST as complete} from '../app/api/templates/[id]/complete/route';
+import {POST as review} from '../app/api/templates/[id]/review/route';
+const headers={'oai-authenticated-user-id':'owner-a','Content-Type':'application/json'};
+const r=await create(new Request('https://studio.test/api/templates',{method:'POST',headers,body:JSON.stringify({name:'Unfinished design',sourceName:'test.pdf'})}));assert.equal(r.status,201);const {id}=await r.json() as any;
+const manifest={schemaVersion:1,name:'Unfinished design',sourceName:'test.pdf',sourceWidth:600,sourceHeight:300,spec:{faceWidth:210,faceHeight:99,bleed:2,sourceIncludesBleed:false,marks:true,product:'mailcard'},fields:[{id:'address',text:'Original',fontName:'Missing font',x:20,y:20,size:12,width:50,horizontalScale:1,charSpace:0,wordSpace:0,role:'custom',supported:true,encodingComplete:true,label:'Address',stream:'page',opIndex:0,color:[0,0,0,1]}],fonts:{},warnings:[],printIssues:['The source font R38 is not embedded.'],defaults:{text:{address:'The Glades Estate longer text'},content:{},oneAgent:false},createdAt:new Date().toISOString()};
+for(const [key,data]of [['source','%PDF-1.7'],['base','%PDF-1.7'],['manifest',JSON.stringify(manifest)]])await env.BUCKET.put(`templates/${id}/${key}`,data);
+const done=await complete(new Request(`https://studio.test/api/templates/${id}/complete`,{method:'POST',headers}),{params:Promise.resolve({id})});assert.equal(done.status,200,await done.text());
+const saved=await (await env.BUCKET.get(`templates/${id}/manifest`))!.json();assert.equal(saved.defaults.text.address,'The Glades Estate longer text');assert.equal(saved.review.status,'proof');assert.ok(saved.warnings.some((v:string)=>/font/i.test(v)));
+const body={text:{address:'Retain this unresolved text'},content:{},oneAgent:false,media:{},reason:'Save now; admin will review the font'};
+const updated=await review(new Request(`https://studio.test/api/templates/${id}/review`,{method:'POST',headers,body:JSON.stringify(body)}),{params:Promise.resolve({id})});assert.equal(updated.status,200);const latest=await (await env.BUCKET.get(`templates/${id}/manifest`))!.json();assert.equal(latest.defaults.text.address,body.text.address);assert.equal(latest.saveExceptions.at(-1).by,'owner-a');
+const denied=await review(new Request(`https://studio.test/api/templates/${id}/review`,{method:'POST',headers:{...headers,'oai-authenticated-user-id':'owner-b'},body:JSON.stringify(body)}),{params:Promise.resolve({id})});assert.equal(denied.status,404);
+console.log('Save with missing font/invalid layout, absent preview, retained edits, audit note, and owner access checks passed');
