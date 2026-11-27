@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import {layoutRich} from '../lib/rich-text';
+import {fontNeedsChoice} from '../lib/font-choices';
+import {repairContentFrames} from '../lib/content-frame-repair';
+import {suggestPrintSpec} from '../lib/print-specs';
+const font={name:'Test',unitsPerEm:1000,subset:true,glyphs:Object.fromEntries([...new Set('LEASEDFor Sale ')].map(c=>[c.codePointAt(0),{advance:600,path:'',bounds:null}]))};
+assert.equal(fontNeedsChoice(font),false);assert.equal(fontNeedsChoice(undefined),true);
+const f={id:'heading',text:'For Sale',fontName:'Test',x:0,y:100,width:30,size:20,horizontalScale:1,charSpace:0,wordSpace:0,role:'custom',color:[0,0,0,1],label:'Heading'} as any;
+const t={fonts:{Test:font},fields:[f],groups:[{id:'stale',key:'address',kind:'address',fieldIds:['missing','heading']}]} as any;
+assert.doesNotThrow(()=>repairContentFrames(t));
+const result=layoutRich([f],{rich:true,text:'LEASED'},t,40,false,.5);
+assert.ok(result.fields[0].size<20);assert.equal(Object.values(result.values).join(''),'LEASED');
+assert.equal(suggestPrintSpec('A4 2 page.pdf',595,842).spec.product,'brochure');
+assert.throws(()=>layoutRich([],{rich:true,text:'LEASED'},t,40,false),/no editable lines/);
+console.log('Editing regression checks passed');

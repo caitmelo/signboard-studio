@@ -1,0 +1,14 @@
+import assert from 'node:assert/strict';
+import {evaluateTemplate} from '../lib/template-engine';
+import {missingFonts} from '../lib/font-choices';
+const glyphs=Object.fromEntries([...new Set('<Name>Test Agent')].map(c=>[String(c.codePointAt(0)),{advance:500,path:'',bounds:[0,-100,500,700]}]));
+const font={name:'Test',unitsPerEm:1000,glyphs};
+const field={id:'name',stream:'page',opIndex:0,text:'<Name>',label:'Agent 1 name',fontName:'Test',x:150,y:180,width:60,size:20,horizontalScale:1,charSpace:0,wordSpace:0,color:[0,0,0,1],role:'agent1_name',align:'center',clip:[149,175,211,200],supported:true,encodingComplete:true};
+const t={schemaVersion:1,name:'Stock',sourceName:'Stock.pdf',sourceWidth:360,sourceHeight:500,fields:[field],fonts:{Test:font},spec:{faceWidth:127,faceHeight:176.3889,bleed:0,sourceIncludesBleed:false,marks:false,product:'letter',productConfirmed:true,sizeConfirmed:true},warnings:[],printIssues:[],createdAt:''} as any;
+const fit=evaluateTemplate(t,{name:'Test Agent'},false);
+assert.equal(fit.valid,true,fit.errors.join('\n'));assert.equal(fit.fields[0].x,130);assert.ok(fit.fields[0].clip[0]<=130);
+assert.equal(missingFonts([{fonts:{Test:font},fields:[field] as any}],{name:'Test Agent'}).length,0);
+assert.equal(missingFonts([{fonts:{Test:font},fields:[field] as any}],{name:'Test Agent!'}).length,1);
+const obstruction=evaluateTemplate({...t,fixedText:[{text:'Neighbour',x:120,y:180,width:20,size:20}]},{name:'Test Agent'},false);
+assert.equal(obstruction.valid,false,'Contact expansion must still reject collisions');
+console.log('Centred contact bounds and missing-character checks passed');
